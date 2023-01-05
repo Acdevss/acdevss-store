@@ -97,21 +97,18 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <form action="">
+          <form method="post" id="sheetdb-form" action="https://sheetdb.io/api/v1/am7uky9bo9n5r">
             <div>
-              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Name" name="data[Name]" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="data[Email]"/>
             </div>
             <div>
-              <input type="text" placeholder="Phone" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message" />
+              <input type="text" class="message-box" placeholder="Message" name="data[Mensaje]"/>
             </div>
             <div class="d-flex ">
-              <button>
+              <button type="submit">
                 SEND
               </button>
             </div>
@@ -121,9 +118,12 @@
           <div class="map_container">
             <div class="map-responsive">
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
+                src="images/catalogo23.pdf"
                 width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
                 allowfullscreen></iframe>
+                <button href="https://drive.google.com/uc?export=download&id=1T_PfpFF7hGJ7DjzOu4KATbcwVSLCOA3H" class="btn-2">
+                  Catálogo
+                </button>
             </div>
           </div>
         </div>
@@ -237,7 +237,22 @@
 
     })
   </script>
-
+  <script>
+    var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(form.action, {
+          method : "POST",
+          body: new FormData(document.getElementById("sheetdb-form")),
+      }).then(
+          response => response.json()
+      ).then((html) => {
+        // you can put any JS code here
+        alert('success')
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
 </body>
 </body>
 
